@@ -1,0 +1,292 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-readex), var(--font-tajawal), 'Arial', sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary-accent);
+  --color-secondary: var(--secondary-accent);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+/* ─── Dark Mode — Glassmorphism Deep Dark Blue ────────────── */
+:root {
+  color-scheme: dark;
+  --background: #05060F;
+  --background-end: #0A0E1F;
+  --card: rgba(255,255,255,0.05);
+  --card-solid: #0d1020;
+  --foreground: #e8eaf6;
+  --foreground-secondary: #8892b0;
+  --border: rgba(255,255,255,0.10);
+  --border-highlight: rgba(255,255,255,0.18);
+  --primary-accent: #7c5cfc;
+  --secondary-accent: #22d3ee;
+  --muted: rgba(255,255,255,0.04);
+  --muted-foreground: #8892b0;
+  --ring: rgba(124,92,252,0.45);
+  --radius: 0.85rem;
+  --gradient: linear-gradient(135deg, #7c5cfc, #22d3ee);
+  --glass-blur: blur(14px);
+  --glass-bg: rgba(255,255,255,0.05);
+  --glass-border: rgba(255,255,255,0.10);
+  --glass-highlight: rgba(255,255,255,0.12);
+  --glow-violet: rgba(124,92,252,0.18);
+  --glow-cyan: rgba(34,211,238,0.14);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #05060F;
+  --background-end: #0A0E1F;
+  --card: rgba(255,255,255,0.05);
+  --card-solid: #0d1020;
+  --foreground: #e8eaf6;
+  --foreground-secondary: #8892b0;
+  --border: rgba(255,255,255,0.10);
+  --border-highlight: rgba(255,255,255,0.18);
+  --primary-accent: #7c5cfc;
+  --secondary-accent: #22d3ee;
+  --muted: rgba(255,255,255,0.04);
+  --muted-foreground: #8892b0;
+  --ring: rgba(124,92,252,0.45);
+  --radius: 0.85rem;
+  --gradient: linear-gradient(135deg, #7c5cfc, #22d3ee);
+  --glass-blur: blur(14px);
+  --glass-bg: rgba(255,255,255,0.05);
+  --glass-border: rgba(255,255,255,0.10);
+  --glass-highlight: rgba(255,255,255,0.12);
+  --glow-violet: rgba(124,92,252,0.18);
+  --glow-cyan: rgba(34,211,238,0.14);
+}
+
+/* ─── Light Mode — Frosted Glass ─────────────────────────── */
+.light {
+  color-scheme: light;
+  --background: #f0f2f8;
+  --background-end: #e8ebf6;
+  --card: rgba(255,255,255,0.62);
+  --card-solid: #ffffff;
+  --foreground: #0f1123;
+  --foreground-secondary: #4b5378;
+  --border: rgba(0,0,0,0.09);
+  --border-highlight: rgba(255,255,255,0.9);
+  --primary-accent: #6344e8;
+  --secondary-accent: #0891b2;
+  --muted: rgba(255,255,255,0.5);
+  --muted-foreground: #4b5378;
+  --ring: rgba(99,68,232,0.35);
+  --radius: 0.85rem;
+  --gradient: linear-gradient(135deg, #6344e8, #0891b2);
+  --glass-blur: blur(14px);
+  --glass-bg: rgba(255,255,255,0.62);
+  --glass-border: rgba(0,0,0,0.08);
+  --glass-highlight: rgba(255,255,255,0.9);
+  --glow-violet: rgba(99,68,232,0.10);
+  --glow-cyan: rgba(8,145,178,0.09);
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html {
+    /* Prevent any component from causing horizontal scroll on mobile */
+    overflow-x: hidden;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  html[dir='rtl'] body { font-family: var(--font-arabic); }
+}
+
+/* ─── Glass utility ──────────────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 1px 0 0 var(--glass-highlight) inset;
+}
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg { background: var(--gradient); }
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-accent); }
+
+/* ─── Marquee ────────────────────────────────────────────── */
+@keyframes marquee-ltr {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-rtl {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.animate-marquee-ltr { animation: marquee-ltr 30s linear infinite; }
+.animate-marquee-rtl { animation: marquee-rtl 30s linear infinite; }
+.marquee-pause:hover .animate-marquee-ltr,
+.marquee-pause:hover .animate-marquee-rtl { animation-play-state: paused; }
+
+/* ─── Header Logo Custom Animations ─────────────────────────── */
+
+/* 1. Gradient Flow — smooth multi-color cycling with text clipping */
+@keyframes logo-gradient-flow {
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 50% 100%; }
+  50%  { background-position: 100% 50%; }
+  75%  { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-logo-gradient-flow {
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: logo-gradient-flow 6s ease infinite !important;
+}
+
+/* 2. Glow Pulse — breathing neon halo with gradient text */
+@keyframes logo-glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px var(--logo-glow, #7c5cfc));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px var(--logo-glow, #7c5cfc)) drop-shadow(0 0 30px var(--logo-glow, #7c5cfc));
+    transform: scale(1.03);
+  }
+}
+.animate-logo-glow-pulse {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: logo-glow-pulse 3s ease-in-out infinite !important;
+}
+
+/* 3. Floating Bounce — smooth levitation with gradient text */
+@keyframes logo-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  30%      { transform: translateY(-6px) scale(1.03); }
+  50%      { transform: translateY(-4px) scale(1.02); }
+  70%      { transform: translateY(-6px) scale(1.03); }
+}
+.animate-logo-bounce {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: logo-bounce 3.5s cubic-bezier(0.37, 0, 0.63, 1) infinite !important;
+}
+
+/* 4. Neon Flicker — cinematic neon sign with gradient text */
+@keyframes logo-neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--logo-glow, #7c5cfc)) drop-shadow(0 0 22px var(--logo-glow, #7c5cfc));
+  }
+  20%, 24%, 55% {
+    opacity: 0.65;
+    filter: drop-shadow(0 0 2px var(--logo-glow, #7c5cfc));
+  }
+}
+.animate-logo-neon-flicker {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: logo-neon-flicker 4s ease-in-out infinite !important;
+}
+
+/* 5. Shimmer Wave — sweeping light reflection */
+@keyframes logo-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.animate-logo-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--logo-start, #7c5cfc) 0%,
+    var(--logo-start, #7c5cfc) 30%,
+    rgba(255,255,255,0.95) 50%,
+    var(--logo-end, #22d3ee) 70%,
+    var(--logo-end, #22d3ee) 100%
+  ) !important;
+  background-size: 300% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: logo-shimmer 3.5s ease-in-out infinite !important;
+}
+
+/* Image fallbacks and glow animations for logo image uploads */
+img.animate-logo-gradient-flow {
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background-clip: unset !important;
+  filter: drop-shadow(0 0 8px var(--logo-glow, #7c5cfc)) drop-shadow(0 0 18px var(--logo-end, #22d3ee)) !important;
+  animation: logo-glow-pulse 3s ease-in-out infinite !important;
+}
+
+img.animate-logo-glow-pulse {
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background-clip: unset !important;
+  animation: logo-glow-pulse 3s ease-in-out infinite !important;
+}
+
+img.animate-logo-bounce {
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background-clip: unset !important;
+  filter: drop-shadow(0 0 8px var(--logo-glow, #7c5cfc));
+  animation: logo-bounce 3.5s cubic-bezier(0.37, 0, 0.63, 1) infinite !important;
+}
+
+img.animate-logo-neon-flicker {
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background-clip: unset !important;
+  animation: logo-neon-flicker 4s ease-in-out infinite !important;
+}
+
+@keyframes logo-img-shimmer {
+  0%   { filter: drop-shadow(-4px 0 6px var(--logo-start, #7c5cfc)); }
+  50%  { filter: drop-shadow(0 0 18px #ffffff) brightness(1.15); }
+  100% { filter: drop-shadow(4px 0 6px var(--logo-end, #22d3ee)); }
+}
+
+img.animate-logo-shimmer {
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background-clip: unset !important;
+  animation: logo-img-shimmer 3.5s ease-in-out infinite !important;
+}
+
+
